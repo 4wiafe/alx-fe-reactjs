@@ -1,5 +1,6 @@
 import React from "react";
-import { useRecipeStore } from "./recipeStore";
+import { Link } from "react-router-dom";
+import { useRecipeStore } from "../stores/recipeStore";
 import SearchBar from "./SearchBar";
 
 const RecipeList = () => {
@@ -13,26 +14,25 @@ const RecipeList = () => {
       <SearchBar />
 
       {recipes.length === 0 ? (
-        <p style={{ color: "#555", marginTop: "16px" }}>No recipes found.</p>
+        <p>No recipes found.</p>
       ) : (
-        <ul style={{ listStyle: "none", padding: 0, margin: 0 }}>
+        <ul style={{ listStyle: "none", padding: 0 }}>
           {recipes.map((recipe) => (
             <li
               key={recipe.id}
               style={{
                 border: "1px solid #ccc",
                 padding: "12px",
-                borderRadius: "4px",
                 marginBottom: "12px",
+                borderRadius: "4px",
               }}
             >
-              <h3 style={{ margin: "0 0 8px 0" }}>{recipe.title}</h3>
-              <p style={{ margin: "0 0 8px 0" }}>{recipe.description}</p>
-              {recipe.ingredients && (
-                <p style={{ margin: 0, fontSize: "0.9em", color: "#555" }}>
-                  Ingredients: {recipe.ingredients.join(", ")}
-                </p>
-              )}
+              <h3>{recipe.title}</h3>
+              <p>{recipe.description}</p>
+
+              <Link to={`/recipes/${recipe.id}`}>
+                View Details
+              </Link>
             </li>
           ))}
         </ul>
