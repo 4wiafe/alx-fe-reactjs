@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { useRecipeStore } from "../stores/recipeStore";
+import { useRecipeStore } from "./recipeStore";
 import SearchBar from "./SearchBar";
 
 const RecipeList = () => {
@@ -8,6 +8,10 @@ const RecipeList = () => {
   const recipes = useRecipeStore((state) =>
     searchTerm ? state.filteredRecipes : state.recipes
   );
+
+  const favorites = useRecipeStore((state) => state.favorites);
+  const addFavorite = useRecipeStore((state) => state.addFavorite);
+  const removeFavorite = useRecipeStore((state) => state.removeFavorite);
 
   return (
     <div style={{ maxWidth: "600px", margin: "0 auto", padding: "16px" }}>
@@ -17,24 +21,38 @@ const RecipeList = () => {
         <p>No recipes found.</p>
       ) : (
         <ul style={{ listStyle: "none", padding: 0 }}>
-          {recipes.map((recipe) => (
-            <li
-              key={recipe.id}
-              style={{
-                border: "1px solid #ccc",
-                padding: "12px",
-                marginBottom: "12px",
-                borderRadius: "4px",
-              }}
-            >
-              <h3>{recipe.title}</h3>
-              <p>{recipe.description}</p>
+          {recipes.map((recipe) => {
+            const isFavorite = favorites.includes(recipe.id);
 
-              <Link to={`/recipes/${recipe.id}`}>
-                View Details
-              </Link>
-            </li>
-          ))}
+            return (
+              <li
+                key={recipe.id}
+                style={{
+                  border: "1px solid #ccc",
+                  padding: "12px",
+                  marginBottom: "12px",
+                  borderRadius: "4px",
+                }}
+              >
+                <h3>{recipe.title}</h3>
+                <p>{recipe.description}</p>
+
+                <div style={{ display: "flex", gap: "8px" }}>
+                  <Link to={`/recipes/${recipe.id}`}>View Details</Link>
+
+                  {isFavorite ? (
+                    <button onClick={() => removeFavorite(recipe.id)}>
+                      Unfavorite
+                    </button>
+                  ) : (
+                    <button onClick={() => addFavorite(recipe.id)}>
+                      Favorite
+                    </button>
+                  )}
+                </div>
+              </li>
+            );
+          })}
         </ul>
       )}
     </div>
