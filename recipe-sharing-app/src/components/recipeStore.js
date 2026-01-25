@@ -1,10 +1,24 @@
 import { create } from "zustand";
 
 const useRecipeStore = create((set, get) => ({
+  // Core data
   recipes: [],
   favorites: [],
   recommendations: [],
 
+  // 🔍 Search state
+  searchTerm: "",
+  setSearchTerm: (term) => set({ searchTerm: term }),
+
+  // Derived filtered recipes
+  filteredRecipes: () => {
+    const { recipes, searchTerm } = get();
+    return recipes.filter((recipe) =>
+      recipe.title.toLowerCase().includes(searchTerm.toLowerCase())
+    );
+  },
+
+  // Recipe actions
   setRecipes: (recipes) => set({ recipes }),
 
   addRecipe: (newRecipe) =>
@@ -18,6 +32,7 @@ const useRecipeStore = create((set, get) => ({
       favorites: state.favorites.filter((favId) => favId !== id),
     })),
 
+  // ⭐ Favorites
   addFavorite: (recipeId) =>
     set((state) => ({
       favorites: state.favorites.includes(recipeId)
@@ -30,6 +45,7 @@ const useRecipeStore = create((set, get) => ({
       favorites: state.favorites.filter((id) => id !== recipeId),
     })),
 
+  // 🍽 Recommendations
   generateRecommendations: () => {
     const { recipes, favorites } = get();
 
