@@ -1,5 +1,5 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import NotFound from "./NotFound";
+import NotFound from "./components/NotFound";
 import "./App.css";
 
 function App() {
