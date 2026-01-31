@@ -111,7 +111,7 @@ export default function Search() {
 
           {!isLoading && !error && users.length === 0 && (
             <p className="col-span-full text-center text-gray-400">
-              No users found
+              Looks like we cant find the user
             </p>
           )}
 
