@@ -21,6 +21,7 @@ export const fetchUserData = async ({ username, location, minRepos }) => {
       query += `+repos:>${minRepos}`;
     }
 
+    // Using GitHub Search API: https://api.github.com/search/users?q={query}
     const response = await githubApi.get(`/search/users?q=${query}`);
     return response.data.items;
   } catch (error) {
