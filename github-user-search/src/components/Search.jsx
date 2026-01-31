@@ -20,8 +20,9 @@ export default function Search() {
 
     try {
       const data = await fetchUserData(value);
+      console.log(data);
       setUser(data);
-    } catch (error) {
+    } catch {
       setError(true);
     } finally {
       setIsLoading(false);
@@ -29,48 +30,76 @@ export default function Search() {
   }
 
   return (
-    <>
-      <div className="form-container">
-        <form onSubmit={handleFormSubmit}>
-          <label>
-            Enter GitHub username
-            <input 
-              type="text" 
-              name="username" 
-              id="username" 
-              className="username-field" 
-              placeholder="eg. johndoe" 
-              value={value}
-              onChange={handleInputValue}
-            />
+    <div className="min-h-screen bg-gray-950 text-gray-100 flex items-center justify-center px-4">
+      <div className="w-full max-w-md space-y-6">
+
+        {/* Search Form */}
+        <form
+          onSubmit={handleFormSubmit}
+          className="bg-gray-900 border border-gray-800 rounded-2xl p-6 shadow-lg space-y-4"
+        >
+          <label className="block text-sm font-medium text-gray-300">
+            GitHub Username
           </label>
 
-          <button type="submit" className="submit">Submit</button>
+          <input
+            type="text"
+            name="username"
+            id="username"
+            placeholder="eg. johndoe"
+            value={value}
+            onChange={handleInputValue}
+            className="w-full px-4 py-2 rounded-lg bg-gray-800 border border-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500"
+          />
+
+          <button
+            type="submit"
+            className="w-full bg-blue-600 hover:bg-blue-500 transition-colors text-white font-semibold py-2 rounded-lg"
+          >
+            Search
+          </button>
         </form>
 
-        <div className="user-details">
-          { isLoading && <p>Loading...</p> }
-          { error && <p>Looks like we cant find the user</p> }
-          { user && (
-            <>
-              <img 
-                src={user.avatar_url} 
+        {/* Result Card */}
+        <div className="bg-gray-900 border border-gray-800 rounded-2xl p-6 shadow-lg min-h-[220px] flex items-center justify-center text-center">
+          {isLoading && (
+            <p className="text-gray-400 animate-pulse">
+              Loading...
+            </p>
+          )}
+
+          {error && (
+            <p className="text-red-400">
+              Looks like we can't find the user
+            </p>
+          )}
+
+          {user && (
+            <div className="space-y-4">
+              <img
+                src={user.avatar_url}
                 alt={user.login}
-                width="100"
+                className="w-24 h-24 rounded-full mx-auto border border-gray-700"
+                loading="lazy"
               />
 
-              <h3 className="name">{user.login}</h3>
+              <h3 className="text-xl font-semibold">
+                {user.login}
+              </h3>
+
               <a
                 href={user.html_url}
                 target="_blank"
                 rel="noopener noreferrer"
+                className="inline-block text-blue-400 hover:text-blue-300 underline underline-offset-4"
               >
                 View GitHub Profile
               </a>
-            </>
-          ) }
+            </div>
+          )}
         </div>
+
       </div>
-    </>
+    </div>
   );
 }

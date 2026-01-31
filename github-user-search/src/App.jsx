@@ -7,10 +7,6 @@ function App() {
   return (
     <>
       <Router>
-        <header>
-          <h1>GitHub User Search</h1>
-        </header>
-
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="*" element={<NotFound />} />

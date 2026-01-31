@@ -1,18 +1,19 @@
 import axios from "axios";
 
-export const fetchUserData = async (username) => {
-  if (!username) {
-    throw new Error("Username is required");
+const githubApi = axios.create({
+  baseURL: "https://api.github.com",
+  headers: {
+    Authorization: import.meta.env.VITE_GITHUB_API_KEY
+      ? `token ${import.meta.env.VITE_GITHUB_API_KEY}`
+      : undefined,
   }
+});
 
+export const fetchUserData = async (query) => {
   try {
-    const response = await axios.get(`https://api.github.com/users/${username}`);
-    return response.data;
+    const response = await githubApi.get(`/search/users?q=${query}`);
+    return response;
   } catch (error) {
-    if (error.response && error.response.status === 404) {
-      throw new Error("User not found");
-    }
-
-    throw new Error("Failed to user data");
+    throw new Error("Failed to fetch user");
   }
 };
