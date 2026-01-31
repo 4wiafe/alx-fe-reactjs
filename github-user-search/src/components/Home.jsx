@@ -11,7 +11,7 @@ export default function Home() {
         </p>
 
         <div className="flex justify-center">
-          <span className="inline-block h-1 w-24 bg-gradient-to-r from-blue-500 to-purple-500 rounded-full" />
+          <span className="inline-block h-1 w-24 bg-blue-500 to-purple-500 rounded-full" />
         </div>
       </div>
     </section>

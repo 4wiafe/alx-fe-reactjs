@@ -13,16 +13,14 @@ export default function Search() {
 
   async function handleFormSubmit(event) {
     event.preventDefault();
-
     setIsLoading(true);
     setError(false);
     setUser(null);
 
     try {
       const data = await fetchUserData(value);
-      console.log(data);
       setUser(data);
-    } catch {
+    } catch (err) {
       setError(true);
     } finally {
       setIsLoading(false);
@@ -30,13 +28,13 @@ export default function Search() {
   }
 
   return (
-    <div className="min-h-screen bg-gray-950 text-gray-100 flex items-center justify-center px-4">
-      <div className="w-full max-w-md space-y-6">
+    <div className="bg-gray-950 text-gray-100 flex flex-col items-center justify-center px-4 py-16 min-h-screen">
+      <div className="w-full max-w-md space-y-4">
 
         {/* Search Form */}
         <form
           onSubmit={handleFormSubmit}
-          className="bg-gray-900 border border-gray-800 rounded-2xl p-6 shadow-lg space-y-4"
+          className="bg-gray-900 border border-gray-800 rounded-2xl p-4 shadow-lg space-y-3"
         >
           <label className="block text-sm font-medium text-gray-300">
             GitHub Username
@@ -60,12 +58,10 @@ export default function Search() {
           </button>
         </form>
 
-        {/* Result Card */}
-        <div className="bg-gray-900 border border-gray-800 rounded-2xl p-6 shadow-lg min-h-[220px] flex items-center justify-center text-center">
+        {/* User Result Card */}
+        <div className="bg-gray-900 border border-gray-800 rounded-2xl p-4 shadow-lg min-h-[180px] flex items-center justify-center text-center">
           {isLoading && (
-            <p className="text-gray-400 animate-pulse">
-              Loading...
-            </p>
+            <p className="text-gray-400 animate-pulse">Loading...</p>
           )}
 
           {error && (
@@ -83,9 +79,7 @@ export default function Search() {
                 loading="lazy"
               />
 
-              <h3 className="text-xl font-semibold">
-                {user.login}
-              </h3>
+              <h3 className="text-xl font-semibold">{user.login}</h3>
 
               <a
                 href={user.html_url}
