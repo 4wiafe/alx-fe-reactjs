@@ -43,7 +43,7 @@ export default function RecipeDetail() {
         ))}
       </ul>
 
-      <h2 className="font-semibold text-blue-400">Cooking Instructions</h2>
+      <h2 className="font-semibold text-blue-400">Cooking instructions</h2>
       <ol>
         {Object.values(recipe.cooking).map((step, index) => (
           <li key={index} className="before:content-['☞']">{step}</li>
