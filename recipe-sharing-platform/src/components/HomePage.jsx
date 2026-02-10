@@ -30,7 +30,7 @@ export default function HomePage() {
           <div key={item.id} className="border rounded p-4 shadow hover:border-blue-400">
             <img src={item.image} alt={item.title} className="w-full h-40 object-cover rounded" />
             <h2 className="text-xl font-bold mt-2 text-blue-500">{item.title}</h2>
-            <p className="text-gray-700">{item.summary}</p>
+            <p className="text-gray-700 text-base">{item.summary}</p>
           </div>
         ))}
       </div>
