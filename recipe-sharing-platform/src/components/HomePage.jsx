@@ -24,11 +24,12 @@ export default function HomePage() {
 
   return (
     <div className="container mx-auto p-4">
+      <h1 className="text-2xl font-semibold mb-2">Recipes</h1>
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
         {data.map((item) => (
-          <div key={item.id} className="border rounded p-4 shadow">
+          <div key={item.id} className="border rounded p-4 shadow hover:border-blue-400">
             <img src={item.image} alt={item.title} className="w-full h-40 object-cover rounded" />
-            <h2 className="text-xl font-bold mt-2">{item.title}</h2>
+            <h2 className="text-xl font-bold mt-2 text-blue-500">{item.title}</h2>
             <p className="text-gray-700">{item.summary}</p>
           </div>
         ))}
