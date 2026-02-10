@@ -31,7 +31,7 @@ export default function RecipeDetail() {
   if (error) return <p>{error}</p>;
 
   return (
-    <div className="container mx-auto p-4 shadow">
+    <div className="container mx-auto p-4 shadow container">
       <h1 className="text-xl font-bold mt-2 text-blue-500 mb-2">{recipe.title}</h1>
       <img src={recipe.image} alt={recipe.title} className="w-full h-40 object-cover rounded" />
       <p className="text-gray-700 text-base mb-3">{recipe.summary}</p>
