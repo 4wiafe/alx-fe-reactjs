@@ -23,16 +23,15 @@ export default function HomePage() {
   if (isLoading) return <p>Loading...</p>
 
   return (
-    <div>
-      <h1 className="text-center font-extrabold text-gray-950 text-3xl p-4">Recipe Sharing Platform</h1>
-      <div className="p-4 flex flex-col gap-3 bg-gray-100">
-        {data.map(item => (<div key={item.id} className="border mx-auto max-w-5xl rounded p-4 bg-white shadow-md w-60 hover:border-blue-500">
-          <h3 className="text-lg font-bold text-blue-500 mb-1">{item.title}</h3>
-          <p className="text-gray-500 font-light mb-2">{item.summary}</p>
-          <div>
-            <img src={item.image} alt={`${item.title}`} className="w-40" />
+    <div className="container mx-auto p-4">
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
+        {data.map((item) => (
+          <div key={item.id} className="border rounded p-4 shadow">
+            <img src={item.image} alt={item.title} className="w-full h-40 object-cover rounded" />
+            <h2 className="text-xl font-bold mt-2">{item.title}</h2>
+            <p className="text-gray-700">{item.summary}</p>
           </div>
-        </div>))}
+        ))}
       </div>
     </div>
   );
