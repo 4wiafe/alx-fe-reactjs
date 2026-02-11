@@ -39,7 +39,7 @@ export default function AddRecipeForm() {
     event.preventDefault();
 
     if (!validate()) return;
-    
+
     setRecipeTitle("");
     setIngredients("");
     setInstructions("");
@@ -87,6 +87,8 @@ export default function AddRecipeForm() {
         </label>
 
         <label className="flex flex-col text-sm font-medium text-gray-700">
+
+          {/* steps */}
           Steps
           <textarea
             rows="4"
