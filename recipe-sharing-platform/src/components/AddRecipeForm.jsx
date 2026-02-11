@@ -17,13 +17,13 @@ export default function AddRecipeForm() {
     setInstructions(event.target.value);
   }
 
-  function submitForm(event) {
+  function handleSubmit(event) {
     event.preventDefault();
   }
 
   return (
     <div className="container mx-auto p-4 max-w-2xl">
-  <form onSubmit={submitForm} className="bg-white shadow-md rounded-lg p-6 space-y-5">
+  <form onSubmit={handleSubmit} className="bg-white shadow-md rounded-lg p-6 space-y-5">
     <h2 className="text-2xl font-semibold text-gray-800 text-center">
       Add Recipe
     </h2>
@@ -53,7 +53,7 @@ export default function AddRecipeForm() {
     </label>
 
     <label className="flex flex-col text-sm font-medium text-gray-700">
-      Instructions
+      Steps
       <textarea
         name="instructions"
         id="instructions"
