@@ -53,7 +53,7 @@ export default function AddRecipeForm() {
     </label>
 
     <label className="flex flex-col text-sm font-medium text-gray-700">
-      Steps
+      steps
       <textarea
         name="instructions"
         id="instructions"
