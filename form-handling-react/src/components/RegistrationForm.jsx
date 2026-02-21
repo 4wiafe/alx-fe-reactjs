@@ -1,25 +1,23 @@
 import { useState } from "react";
 
 export default function RegistrationForm() {
-  const [formData, setFormData] = useState({
-    username: "",
-    email: "",
-    password: ""
-  });
+  const [username, setUsername] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
   const [errors, setErrors] = useState({});
 
   const validate = () => {
     const newErrors = {};
 
-    if (formData.username.trim() === "") {
+    if (username.trim() === "") {
       newErrors.username = "Username is required";
     }
 
-    if (!formData.email.includes("@")) {
+    if (!email.includes("@")) {
       newErrors.email = "Email must contain @";
     }
 
-    if (formData.password.trim() === "") {
+    if (password.trim() === "") {
       newErrors.password = "Password is required";
     }
 
@@ -37,11 +35,9 @@ export default function RegistrationForm() {
 
     if (!validate()) return;
 
-    setFormData({
-      username: "",
-      email: "",
-      password: ""
-    });
+    setUsername("");
+    setEmail("");
+    setPassword("");
 
     setErrors({});
   };
@@ -52,17 +48,35 @@ export default function RegistrationForm() {
         <h2>Sign-up form</h2>
         <label>
           Username
-          <input type="text" name="username" id="username" onChange={handleFormData}/>
+          <input 
+            type="text" 
+            name="username" 
+            id="username" 
+            onChange={handleFormData} 
+            value={username}
+          />
           {errors.username && (<span>{errors.username}</span>)}
         </label>
         <label>
           Email
-          <input type="email" name="email" id="email" onChange={handleFormData}/>
+          <input 
+            type="email" 
+            name="email" 
+            id="email" 
+            onChange={handleFormData} 
+            value={email}
+          />
           {errors.email && (<span>{errors.email}</span>)}
         </label>
         <label>
           Password
-          <input type="password" name="password" id="password" onChange={handleFormData}/>
+          <input 
+            type="password" 
+            name="password" 
+            id="password" 
+            onChange={handleFormData} 
+            value={password}
+          />
           {errors.password && (<span>{errors.password}</span>)}
         </label>
         <button type="submit">Send</button>
