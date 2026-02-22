@@ -9,3 +9,7 @@ label {
   flex-direction: column;
   gap: 10px;
 }
+
+span {
+  color: red;
+}

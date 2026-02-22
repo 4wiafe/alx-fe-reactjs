@@ -1,11 +1,11 @@
-import FormikForm from "./components/formik"
-import "./App.css"
+import RegistrationForm from './components/RegistrationForm'
+import './App.css'
 
 function App() {
 
   return (
     <>
-      <FormikForm />
+      <RegistrationForm />
     </>
   )
 }
